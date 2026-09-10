@@ -442,7 +442,7 @@ class WebSocketApp:
                 SystemExit,
                 Exception,
             ) as e:
-                handleDisconnect( e )
+                handleDisconnect(e)
 
         def read() -> bool:
             if not self.keep_running:
@@ -539,7 +539,7 @@ class WebSocketApp:
                 setattr(converted, "status_code", close_status_code)
                 setattr(converted, "reason", close_reason)
                 e = converted
-            return handleDisconnect(e, bool(reconnect), close_frame=close_frame)  # type: ignore[arg-type]
+            return handleDisconnect(e, close_frame=close_frame)  # type: ignore[arg-type]
 
         def handleDisconnect(
             e: Union[
@@ -549,7 +549,6 @@ class WebSocketApp:
                 SystemExit,
                 Exception,
             ],
-            reconnecting: bool = False,
             close_frame: Optional[ABNF] = None,
         ) -> bool:
             self.has_errored = True
