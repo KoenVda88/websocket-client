@@ -105,6 +105,10 @@ class WebSocketApp:
             on_error has 2 arguments.
             The 1st argument is this class object.
             The 2nd argument is exception object.
+            Called for every error, including errors during reconnect
+            attempts (since 1.10.0). To distinguish reconnect-phase
+            errors from the initial failure, track state with the
+            on_reconnect and on_open callbacks.
         on_close: function
             Callback object which is called when connection is closed.
             on_close has 3 arguments.
